@@ -1,0 +1,35 @@
+/* basic styling */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0d0f14;
+  color: #e8edf5;
+  text-align: center;
+}
+
+/* heading style */
+h1 {
+  margin-top: 20px;
+  color: #00ff94;
+}
+
+/* navigation buttons */
+nav {
+  margin-top: 20px;
+}
+
+nav button {
+  margin: 8px;
+  padding: 10px 15px;
+  background: #131720;
+  color: white;
+  border: 1px solid #2a3a50;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* content area */
+#content {
+  margin-top: 30px;
+  font-size: 14px;
+}
