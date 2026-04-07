@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Smart Classroom Scheduler</title>
+  <meta charset="UTF-8">
+  <title>Smart Scheduler</title>
 
-  <!-- linking css -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- sidebar -->
-  <div class="sidebar">
-    <h2>Scheduler</h2>
+  <aside class="sidebar" id="sidebar">
 
-    <ul>
-      <li>Dashboard</li>
-      <li>Teachers</li>
-      <li>Subjects</li>
-      <li>Classrooms</li>
-      <li>Generate</li>
-    </ul>
-  </div>
+    <div class="sidebar-logo">
+      <div class="logo-title">SmartSched</div>
+    </div>
 
-  <!-- main content -->
-  <div class="main">
-    <h1>Smart Classroom & Timetable Scheduler</h1>
-    <p>UI layout development in progress...</p>
-  </div>
+    <nav class="nav-menu">
+      <a href="#" class="nav-item active" data-section="dashboard">Dashboard</a>
+      <a href="#" class="nav-item" data-section="teachers">Teachers</a>
+      <a href="#" class="nav-item" data-section="subjects">Subjects</a>
+      <a href="#" class="nav-item" data-section="classrooms">Classrooms</a>
+      <a href="#" class="nav-item" data-section="generate">Generate</a>
+    </nav>
 
+  </aside>
+
+  <main class="main-content">
+
+    <section class="section active" id="section-dashboard">
+      <h1>Dashboard</h1>
+      <p>Overview will be shown here...</p>
+    </section>
+
+    <section class="section" id="section-teachers">
+      <h1>Teachers</h1>
+      <p>Teacher UI coming soon...</p>
+    </section>
+
+    <section class="section" id="section-subjects">
+      <h1>Subjects</h1>
+      <p>Subject UI coming soon...</p>
+    </section>
+
+    <section class="section" id="section-classrooms">
+      <h1>Classrooms</h1>
+      <p>Classroom UI coming soon...</p>
+    </section>
+
+    <section class="section" id="section-generate">
+      <h1>Generate</h1>
+      <p>Scheduler will be added soon...</p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
