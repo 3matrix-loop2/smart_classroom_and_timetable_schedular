@@ -2,59 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Smart Scheduler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Classroom Scheduler</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-  <aside class="sidebar" id="sidebar">
-
-    <div class="sidebar-logo">
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">⬡</div>
+    <div>
       <div class="logo-title">SmartSched</div>
+      <div class="logo-sub">Scheduler</div>
+    </div>
+  </div>
+
+  <nav class="nav-menu">
+    <a href="#" class="nav-item active" data-section="dashboard">Dashboard</a>
+    <a href="#" class="nav-item" data-section="teachers">Teachers</a>
+    <a href="#" class="nav-item" data-section="subjects">Subjects</a>
+    <a href="#" class="nav-item" data-section="classrooms">Classrooms</a>
+    <a href="#" class="nav-item" data-section="generate">Generate</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+<!-- DASHBOARD -->
+<section class="section active" id="section-dashboard">
+  <div class="section-header">
+    <h1>Dashboard</h1>
+    <p class="section-sub">Smart Scheduler Overview</p>
+  </div>
+</section>
+
+<!-- TEACHERS -->
+<section class="section" id="section-teachers">
+  <div class="section-header">
+    <h1>Teacher Management</h1>
+  </div>
+
+  <div class="form-card">
+    <h3>Add Teacher</h3>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" placeholder="Teacher Name">
     </div>
 
-    <nav class="nav-menu">
-      <a href="#" class="nav-item active" data-section="dashboard">Dashboard</a>
-      <a href="#" class="nav-item" data-section="teachers">Teachers</a>
-      <a href="#" class="nav-item" data-section="subjects">Subjects</a>
-      <a href="#" class="nav-item" data-section="classrooms">Classrooms</a>
-      <a href="#" class="nav-item" data-section="generate">Generate</a>
-    </nav>
+    <div class="form-group">
+      <label>Subject</label>
+      <input type="text" placeholder="Subject">
+    </div>
 
-  </aside>
+    <button class="btn-primary">Add Teacher</button>
+  </div>
 
-  <main class="main-content">
+  <div class="list-section">
+    <h3>Teacher List</h3>
+    <div class="data-list">
+      <div class="empty-state">No teachers added</div>
+    </div>
+  </div>
+</section>
 
-    <section class="section active" id="section-dashboard">
-      <h1>Dashboard</h1>
-      <p>Overview will be shown here...</p>
-    </section>
+<!-- SUBJECTS -->
+<section class="section" id="section-subjects">
+  <div class="section-header">
+    <h1>Subject Management</h1>
+  </div>
 
-    <section class="section" id="section-teachers">
-      <h1>Teachers</h1>
-      <p>Teacher UI coming soon...</p>
-    </section>
+  <div class="form-card">
+    <h3>Add Subject</h3>
 
-    <section class="section" id="section-subjects">
-      <h1>Subjects</h1>
-      <p>Subject UI coming soon...</p>
-    </section>
+    <div class="form-group">
+      <label>Subject Name</label>
+      <input type="text" placeholder="Subject Name">
+    </div>
 
-    <section class="section" id="section-classrooms">
-      <h1>Classrooms</h1>
-      <p>Classroom UI coming soon...</p>
-    </section>
+    <div class="form-group">
+      <label>Teacher</label>
+      <input type="text" placeholder="Teacher Name">
+    </div>
 
-    <section class="section" id="section-generate">
-      <h1>Generate</h1>
-      <p>Scheduler will be added soon...</p>
-    </section>
+    <button class="btn-primary">Add Subject</button>
+  </div>
 
-  </main>
+  <div class="list-section">
+    <h3>Subject List</h3>
+    <div class="data-list">
+      <div class="empty-state">No subjects added</div>
+    </div>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- CLASSROOMS -->
+<section class="section" id="section-classrooms">
+  <div class="section-header">
+    <h1>Classroom Management</h1>
+  </div>
+
+  <div class="form-card">
+    <h3>Add Classroom</h3>
+
+    <div class="form-group">
+      <label>Room</label>
+      <input type="text" placeholder="Room Number">
+    </div>
+
+    <div class="form-group">
+      <label>Capacity</label>
+      <input type="number" placeholder="Capacity">
+    </div>
+
+    <button class="btn-primary">Add Classroom</button>
+  </div>
+
+  <div class="list-section">
+    <h3>Classroom List</h3>
+    <div class="data-list">
+      <div class="empty-state">No classrooms added</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="section-generate">
+  <div class="section-header">
+    <h1>Generate Timetable</h1>
+    <p class="section-sub">Algorithm will be added next</p>
+  </div>
+
+  <button class="btn-primary">Generate</button>
+</section>
+
+</main>
+
+<script src="script.js"></script>
+
 </body>
 </html>
