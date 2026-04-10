@@ -4,17 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Smart Classroom Scheduler</title>
-
   <link rel="stylesheet" href="style.css"/>
-
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <div class="logo-icon">⬡</div>
     <div>
       <div class="logo-title">SmartSched</div>
       <div class="logo-sub">Scheduler</div>
@@ -30,120 +26,119 @@
   </nav>
 </aside>
 
-<!-- MAIN -->
 <main class="main-content">
 
-<!-- DASHBOARD -->
-<section class="section active" id="section-dashboard">
-  <div class="section-header">
-    <h1>Dashboard</h1>
-    <p class="section-sub">Smart Scheduler Overview</p>
-  </div>
-</section>
-
-<!-- TEACHERS -->
-<section class="section" id="section-teachers">
-  <div class="section-header">
-    <h1>Teacher Management</h1>
-  </div>
-
-  <div class="form-card">
-    <h3>Add Teacher</h3>
-
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" placeholder="Teacher Name">
+  <section class="section active" id="section-dashboard">
+    <div class="section-header">
+      <h1>Dashboard</h1>
+      <p class="section-sub">Smart Scheduler Overview</p>
     </div>
 
-    <div class="form-group">
-      <label>Subject</label>
-      <input type="text" placeholder="Subject">
-    </div>
-
-    <button class="btn-primary">Add Teacher</button>
-  </div>
-
-  <div class="list-section">
-    <h3>Teacher List</h3>
     <div class="data-list">
-      <div class="empty-state">No teachers added</div>
+      <div>Teachers: <span id="teacher-count">0</span></div>
+      <div>Subjects: <span id="subject-count">0</span></div>
+      <div>Classrooms: <span id="classroom-count">0</span></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SUBJECTS -->
-<section class="section" id="section-subjects">
-  <div class="section-header">
-    <h1>Subject Management</h1>
-  </div>
-
-  <div class="form-card">
-    <h3>Add Subject</h3>
-
-    <div class="form-group">
-      <label>Subject Name</label>
-      <input type="text" placeholder="Subject Name">
+  <section class="section" id="section-teachers">
+    <div class="section-header">
+      <h1>Teacher Management</h1>
     </div>
 
-    <div class="form-group">
-      <label>Teacher</label>
-      <input type="text" placeholder="Teacher Name">
+    <div class="form-card">
+      <h3>Add Teacher</h3>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="t-name" placeholder="Teacher Name">
+      </div>
+
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" id="t-subject" placeholder="Subject">
+      </div>
+
+      <button class="btn-primary" onclick="addTeacher()">Add Teacher</button>
     </div>
 
-    <button class="btn-primary">Add Subject</button>
-  </div>
-
-  <div class="list-section">
-    <h3>Subject List</h3>
-    <div class="data-list">
-      <div class="empty-state">No subjects added</div>
+    <div class="list-section">
+      <h3>Teacher List</h3>
+      <div class="data-list" id="teacher-list">
+        <div class="empty-state">No teachers added</div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CLASSROOMS -->
-<section class="section" id="section-classrooms">
-  <div class="section-header">
-    <h1>Classroom Management</h1>
-  </div>
-
-  <div class="form-card">
-    <h3>Add Classroom</h3>
-
-    <div class="form-group">
-      <label>Room</label>
-      <input type="text" placeholder="Room Number">
+  <section class="section" id="section-subjects">
+    <div class="section-header">
+      <h1>Subject Management</h1>
     </div>
 
-    <div class="form-group">
-      <label>Capacity</label>
-      <input type="number" placeholder="Capacity">
+    <div class="form-card">
+      <h3>Add Subject</h3>
+
+      <div class="form-group">
+        <label>Subject Name</label>
+        <input type="text" id="s-name" placeholder="Subject Name">
+      </div>
+
+      <div class="form-group">
+        <label>Teacher</label>
+        <input type="text" id="s-teacher" placeholder="Teacher Name">
+      </div>
+
+      <button class="btn-primary" onclick="addSubject()">Add Subject</button>
     </div>
 
-    <button class="btn-primary">Add Classroom</button>
-  </div>
-
-  <div class="list-section">
-    <h3>Classroom List</h3>
-    <div class="data-list">
-      <div class="empty-state">No classrooms added</div>
+    <div class="list-section">
+      <h3>Subject List</h3>
+      <div class="data-list" id="subject-list">
+        <div class="empty-state">No subjects added</div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section class="section" id="section-classrooms">
+    <div class="section-header">
+      <h1>Classroom Management</h1>
+    </div>
 
-<section class="section" id="section-generate">
-  <div class="section-header">
-    <h1>Generate Timetable</h1>
-    <p class="section-sub">Algorithm will be added next</p>
-  </div>
+    <div class="form-card">
+      <h3>Add Classroom</h3>
 
-  <button class="btn-primary">Generate</button>
-</section>
+      <div class="form-group">
+        <label>Room</label>
+        <input type="text" id="c-room" placeholder="Room Number">
+      </div>
+
+      <div class="form-group">
+        <label>Capacity</label>
+        <input type="number" id="c-capacity" placeholder="Capacity">
+      </div>
+
+      <button class="btn-primary" onclick="addClassroom()">Add Classroom</button>
+    </div>
+
+    <div class="list-section">
+      <h3>Classroom List</h3>
+      <div class="data-list" id="classroom-list">
+        <div class="empty-state">No classrooms added</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="section-generate">
+    <div class="section-header">
+      <h1>Generate Timetable</h1>
+      <p class="section-sub">Scheduling logic will be added later</p>
+    </div>
+
+    <button class="btn-primary">Generate</button>
+  </section>
 
 </main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
