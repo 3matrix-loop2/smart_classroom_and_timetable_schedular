@@ -1,144 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Smart Classroom Scheduler</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <title>Smart Classroom & Timetable Scheduler</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Syne (display) + JetBrains Mono (data/mono) -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <div>
-      <div class="logo-title">SmartSched</div>
-      <div class="logo-sub">Scheduler</div>
-    </div>
-  </div>
-
-  <nav class="nav-menu">
-    <a href="#" class="nav-item active" data-section="dashboard">Dashboard</a>
-    <a href="#" class="nav-item" data-section="teachers">Teachers</a>
-    <a href="#" class="nav-item" data-section="subjects">Subjects</a>
-    <a href="#" class="nav-item" data-section="classrooms">Classrooms</a>
-    <a href="#" class="nav-item" data-section="generate">Generate</a>
-  </nav>
-</aside>
-
-<main class="main-content">
-
-  <section class="section active" id="section-dashboard">
-    <div class="section-header">
-      <h1>Dashboard</h1>
-      <p class="section-sub">Smart Scheduler Overview</p>
-    </div>
-
-    <div class="data-list">
-      <div>Teachers: <span id="teacher-count">0</span></div>
-      <div>Subjects: <span id="subject-count">0</span></div>
-      <div>Classrooms: <span id="classroom-count">0</span></div>
-    </div>
-  </section>
-
-  <section class="section" id="section-teachers">
-    <div class="section-header">
-      <h1>Teacher Management</h1>
-    </div>
-
-    <div class="form-card">
-      <h3>Add Teacher</h3>
-
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" id="t-name" placeholder="Teacher Name">
-      </div>
-
-      <div class="form-group">
-        <label>Subject</label>
-        <input type="text" id="t-subject" placeholder="Subject">
-      </div>
-
-      <button class="btn-primary" onclick="addTeacher()">Add Teacher</button>
-    </div>
-
-    <div class="list-section">
-      <h3>Teacher List</h3>
-      <div class="data-list" id="teacher-list">
-        <div class="empty-state">No teachers added</div>
+  <!--  SIDEBAR NAV  -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⬡</div>
+      <div>
+        <div class="logo-title">SmartSched</div>
+        <div class="logo-sub">OS Scheduler Sim</div>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="section-subjects">
-    <div class="section-header">
-      <h1>Subject Management</h1>
+    <nav class="nav-menu">
+      <a href="#" class="nav-item active" data-section="dashboard">
+        <span class="nav-icon">◈</span> Dashboard
+      </a>
+      <a href="#" class="nav-item" data-section="teachers">
+        <span class="nav-icon">◉</span> Add Teacher
+      </a>
+      <a href="#" class="nav-item" data-section="subjects">
+        <span class="nav-icon">◎</span> Add Subject
+      </a>
+      <a href="#" class="nav-item" data-section="classrooms">
+        <span class="nav-icon">▣</span> Add Classroom
+      </a>
+      <a href="#" class="nav-item" data-section="generate">
+        <span class="nav-icon">⟳</span> Generate Timetable
+      </a>
+      <a href="#" class="nav-item" data-section="timetable">
+        <span class="nav-icon">▦</span> View Timetable
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="algo-badge">Algorithm: Round Robin + FCFS</div>
+      <div class="patent-id">Patent Topic ID: 2508</div>
     </div>
+  </aside>
 
-    <div class="form-card">
-      <h3>Add Subject</h3>
+  <!--  HAMBURGER (mobile)  -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 
-      <div class="form-group">
-        <label>Subject Name</label>
-        <input type="text" id="s-name" placeholder="Subject Name">
+  <!-- MAIN CONTENT  -->
+  <main class="main-content">
+
+    <!-- ── DASHBOARD ── -->
+    <section class="section active" id="section-dashboard">
+      <div class="section-header">
+        <h1>Dashboard</h1>
+        <p class="section-sub">Smart Classroom & Timetable Scheduling System</p>
       </div>
 
-      <div class="form-group">
-        <label>Teacher</label>
-        <input type="text" id="s-teacher" placeholder="Teacher Name">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">◉</div>
+          <div class="stat-num" id="stat-teachers">0</div>
+          <div class="stat-label">Teachers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">◎</div>
+          <div class="stat-num" id="stat-subjects">0</div>
+          <div class="stat-label">Subjects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">▣</div>
+          <div class="stat-num" id="stat-classrooms">0</div>
+          <div class="stat-label">Classrooms</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="stat-icon">▦</div>
+          <div class="stat-num" id="stat-slots">0</div>
+          <div class="stat-label">Slots Scheduled</div>
+        </div>
       </div>
 
-      <button class="btn-primary" onclick="addSubject()">Add Subject</button>
-    </div>
-
-    <div class="list-section">
-      <h3>Subject List</h3>
-      <div class="data-list" id="subject-list">
-        <div class="empty-state">No subjects added</div>
+      <div class="info-cards">
+        <div class="info-card">
+          <h3>🖥️ OS Concept Connection</h3>
+          <p>This project mirrors <strong>CPU Scheduling</strong> in Operating Systems. Just as an OS allocates CPU time to processes without conflicts, this scheduler assigns teachers and classrooms to time slots — preventing "race conditions" (double-booking) using algorithms inspired by <strong>Round Robin</strong> (fair rotation of subjects across slots) and <strong>FCFS</strong> (teachers added first get priority assignment).</p>
+        </div>
+        <div class="info-card">
+          <h3>⚙️ Scheduling Algorithm</h3>
+          <ul>
+            <li><strong>FCFS:</strong> Subjects are queued in the order they're added.</li>
+            <li><strong>Round Robin:</strong> Each subject gets one slot per pass, rotating fairly across all days and time slots.</li>
+            <li><strong>Conflict Prevention:</strong> Before each assignment, the scheduler checks if the teacher or classroom is already occupied — like a mutex/semaphore in OS.</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="section-classrooms">
-    <div class="section-header">
-      <h1>Classroom Management</h1>
-    </div>
-
-    <div class="form-card">
-      <h3>Add Classroom</h3>
-
-      <div class="form-group">
-        <label>Room</label>
-        <input type="text" id="c-room" placeholder="Room Number">
-      </div>
-
-      <div class="form-group">
-        <label>Capacity</label>
-        <input type="number" id="c-capacity" placeholder="Capacity">
+    <!-- ── ADD TEACHER ── -->
+    <section class="section" id="section-teachers">
+      <div class="section-header">
+        <h1>Teacher Management</h1>
+        <p class="section-sub">Register teachers and their availability</p>
       </div>
 
-      <button class="btn-primary" onclick="addClassroom()">Add Classroom</button>
-    </div>
-
-    <div class="list-section">
-      <h3>Classroom List</h3>
-      <div class="data-list" id="classroom-list">
-        <div class="empty-state">No classrooms added</div>
+      <div class="form-card">
+        <h3>Add New Teacher</h3>
+        <div class="form-group">
+          <label>Teacher Name</label>
+          <input type="text" id="t-name" placeholder="e.g. Dr. Priya Sharma" />
+        </div>
+        <div class="form-group">
+          <label>Subject Expertise</label>
+          <input type="text" id="t-subject" placeholder="e.g. Data Structures" />
+        </div>
+        <div class="form-group">
+          <label>Available Days</label>
+          <div class="checkbox-group" id="t-days">
+            <label><input type="checkbox" value="Monday" checked /> Mon</label>
+            <label><input type="checkbox" value="Tuesday" checked /> Tue</label>
+            <label><input type="checkbox" value="Wednesday" checked /> Wed</label>
+            <label><input type="checkbox" value="Thursday" checked /> Thu</label>
+            <label><input type="checkbox" value="Friday" checked /> Fri</label>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="addTeacher()">+ Add Teacher</button>
       </div>
-    </div>
-  </section>
 
-  <section class="section" id="section-generate">
-    <div class="section-header">
-      <h1>Generate Timetable</h1>
-      <p class="section-sub">Scheduling logic will be added later</p>
-    </div>
+      <div class="list-section">
+        <h3>Registered Teachers</h3>
+        <div class="data-list" id="teacher-list"></div>
+      </div>
+    </section>
 
-    <button class="btn-primary">Generate</button>
-  </section>
+    <!-- ── ADD SUBJECT ── -->
+    <section class="section" id="section-subjects">
+      <div class="section-header">
+        <h1>Subject Management</h1>
+        <p class="section-sub">Define subjects and assign teachers</p>
+      </div>
 
-</main>
+      <div class="form-card">
+        <h3>Add New Subject</h3>
+        <div class="form-group">
+          <label>Subject Name</label>
+          <input type="text" id="s-name" placeholder="e.g. Operating Systems" />
+        </div>
+        <div class="form-group">
+          <label>Assigned Teacher</label>
+          <select id="s-teacher">
+            <option value="">-- Select Teacher --</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Hours Per Week</label>
+          <input type="number" id="s-hours" min="1" max="10" value="3" />
+        </div>
+        <button class="btn-primary" onclick="addSubject()">+ Add Subject</button>
+      </div>
 
-<script src="script.js"></script>
+      <div class="list-section">
+        <h3>Registered Subjects</h3>
+        <div class="data-list" id="subject-list"></div>
+      </div>
+    </section>
+
+    <!-- ── ADD CLASSROOM ── -->
+    <section class="section" id="section-classrooms">
+      <div class="section-header">
+        <h1>Classroom Management</h1>
+        <p class="section-sub">Register and manage classroom resources</p>
+      </div>
+
+      <div class="form-card">
+        <h3>Add New Classroom</h3>
+        <div class="form-group">
+          <label>Room Number / Name</label>
+          <input type="text" id="c-num" placeholder="e.g. Room 101" />
+        </div>
+        <div class="form-group">
+          <label>Seating Capacity</label>
+          <input type="number" id="c-cap" min="10" max="300" value="60" />
+        </div>
+        <button class="btn-primary" onclick="addClassroom()">+ Add Classroom</button>
+      </div>
+
+      <div class="list-section">
+        <h3>Available Classrooms</h3>
+        <div class="data-list" id="classroom-list"></div>
+      </div>
+    </section>
+
+    <!-- ── GENERATE TIMETABLE ── -->
+    <section class="section" id="section-generate">
+      <div class="section-header">
+        <h1>Generate Timetable</h1>
+        <p class="section-sub">Run the scheduling algorithm</p>
+      </div>
+
+      <div class="generate-card">
+        <div class="algo-info">
+          <div class="algo-step">
+            <div class="step-num">01</div>
+            <div>
+              <strong>Queue Formation (FCFS)</strong>
+              <p>Subjects are queued in the order they were added — First Come First Served.</p>
+            </div>
+          </div>
+          <div class="algo-step">
+            <div class="step-num">02</div>
+            <div>
+              <strong>Round Robin Slot Assignment</strong>
+              <p>Each subject gets one slot per scheduling pass, rotating across days and time slots fairly.</p>
+            </div>
+          </div>
+          <div class="algo-step">
+            <div class="step-num">03</div>
+            <div>
+              <strong>Conflict Detection (Mutex Check)</strong>
+              <p>Before each assignment, the scheduler verifies teacher and classroom availability — like a semaphore lock in OS.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-generate" onclick="generateTimetable()">
+          <span class="btn-icon">⟳</span> Run Scheduler
+        </button>
+        <div id="gen-status" class="gen-status"></div>
+      </div>
+    </section>
+
+    <!-- ── VIEW TIMETABLE ── -->
+    <section class="section" id="section-timetable">
+      <div class="section-header">
+        <h1>Generated Timetable</h1>
+        <p class="section-sub">Visual grid — Days × Time Slots</p>
+      </div>
+
+      <div class="timetable-controls">
+        <button class="btn-sm" onclick="clearTimetable()">✕ Clear Timetable</button>
+        <button class="btn-sm accent" onclick="navigateTo('generate')">⟳ Regenerate</button>
+      </div>
+
+      <div class="timetable-wrapper">
+        <div id="timetable-container">
+          <div class="empty-state">No timetable generated yet. Go to <strong>Generate Timetable</strong> first.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--  TOAST  -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
